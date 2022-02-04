@@ -6,7 +6,7 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 12:03:25 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/02 20:16:12 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/02/04 12:18:29 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,13 @@ typedef struct s_data {
 //FUNCS
 
 //exits
-int		wrapper(int func, char *err_txt, t_data *data);
-int		stop(char *err_msg, t_data *data);
+int		stop_1(char *err_msg);
+int		stop_2(char *err_msg, t_data *data);
+int		stop_3(char *err_msg, t_data *data);
+int		stop_4(char *err_msg, t_data *data);
 
 //map read
-char	*gnl_strjoin(char **s1, char const *s2);
+char	*sl_strjoin(char *s1, char const *s2);
 int		file_read(char *filename, t_data *data);
 int		read_initer(char *file, t_data *data);
 

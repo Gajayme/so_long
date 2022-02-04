@@ -6,7 +6,7 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 19:41:47 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/02 17:57:42 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/02/04 12:12:21 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	fst_lst(char *line, t_data *data, char flag)
 		while (line[i])
 		{
 			if (line[i] != '1')
-				stop("Invalid map", data);
+				stop_3("Invalid map", data);
 			i += 1;
 		}
 		data->map->width = i;
@@ -31,11 +31,11 @@ int	fst_lst(char *line, t_data *data, char flag)
 	while (line[i])
 	{
 		if (line[i] != '1')
-			stop("Invalid map", data);
+			stop_3("Invalid map", data);
 		i += 1;
 	}
 	if (i != data->map->width)
-		stop("Invalid map", data);
+		stop_3("Invalid map", data);
 	return (0);
 }
 
@@ -47,7 +47,7 @@ int	mdl(char *line, t_data *data, int h)
 	while (line[++i])
 	{
 		if ((i == 0 && line[0] != '1') || (!line[i + 1] && line[i] != '1'))
-			stop("Invalid map", data);
+			stop_3("Invalid map", data);
 		else if (line[i] == 'P')
 		{
 			data->map->start += 1;
@@ -61,10 +61,10 @@ int	mdl(char *line, t_data *data, int h)
 		else if (line[i] == 'F')
 			data->map->enemy += 1;
 		else if (line[i] != '0' && line[i] != '1')
-			stop("Invalid map", data);
+			stop_3("Invalid map", data);
 	}
 	if (i != data->map->width)
-		stop("Invalid map", data);
+		stop_3("Invalid map", data);
 	return (0);
 }
 
@@ -94,7 +94,7 @@ int	map_parse(t_data *data)
 	free(data->map->file);
 	data->map->file = NULL;
 	if (!data->map->map)
-		stop("Splitting error", data);
+		stop_2("Splitting error", data);
 	while (data->map->map[++h])
 	{
 		if (h == 0)
@@ -108,6 +108,6 @@ int	map_parse(t_data *data)
 	if (h < 3 || data->map->width < 3 || data->map->start
 		!= 1 || data->map->collect == 0 || data->map->end == 0
 		|| lines != h)
-		stop("Invalid map", data);
+		stop_3("Invalid map", data);
 	return (0);
 }

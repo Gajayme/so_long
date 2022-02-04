@@ -6,7 +6,7 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:57:07 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/02 17:58:25 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/02/04 11:47:18 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	game_initer(char *filename, t_data *data)
 	img_open(data);
 	win_size(data);
 	data->mlx_win = mlx_new_window(data->mlx, data->win_w,
-			data->win_h, "So_long");
+			data->win_h, "so_long");
 	map_drawer(data);
 	return (0);
 }
@@ -54,10 +54,15 @@ int	game_initer(char *filename, t_data *data)
 int	fname_val(char *filename)
 {
 	int	len;
+	int	fd;
 
 	len = ft_strlen(filename);
 	if (!filename || len <= 4 || ft_strncmp(filename + len - 4, ".ber", 4))
 		return (1);
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		return (0);
+	close (fd);
 	return (0);
 }
 
@@ -66,9 +71,9 @@ int	main(int ac, char *av[])
 	t_data	data;
 
 	if (ac != 2)
-		stop("Invalid number of arguments", &data);
+		stop_1("Invalid number of arguments");
 	if (fname_val(av[1]))
-		stop("Invalid map", &data);
+		stop_1("Invalid file");
 	game_initer(av[1], &data);
 	mlx_hook(data.mlx_win, 2, 1L << 0, key_hook, &data);
 	mlx_hook(data.mlx_win, 17, 0, red_cross, &data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gajayme <gajayme@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:59:24 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/02 20:29:12 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/02/04 20:15:51 by gajayme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	enemy_right(t_data	*data)
 {
 	data->enemy_img = data->enemy_r_img;
 	if (data->map->map[data->map->enemy_y][data->map->enemy_x + 1] == 'P')
-		stop(NULL, data);
+		stop_4(NULL, data);
 	data->map->map[data->map->enemy_y][data->map->enemy_x] = '0';
 	data->map->enemy_x += 1;
 	data->map->map[data->map->enemy_y][data->map->enemy_x] = '!';
@@ -27,7 +27,7 @@ int	enemy_left(t_data	*data)
 {
 	data->enemy_img = data->enemy_l_img;
 	if (data->map->map[data->map->enemy_y][data->map->enemy_x - 1] == 'P')
-		stop(NULL, data);
+		stop_4(NULL, data);
 	data->map->map[data->map->enemy_y][data->map->enemy_x] = '0';
 	data->map->enemy_x -= 1;
 	data->map->map[data->map->enemy_y][data->map->enemy_x] = '!';
@@ -36,10 +36,11 @@ int	enemy_left(t_data	*data)
 
 int	enemy_move(t_data *data)
 {
-	char	c;
+	char	r;
+	char	l;
 
-	c = data->map->map[data->map->enemy_y][data->map->enemy_x + 1];
-	if (c != '1' && c != 'E' && c != 'C' && data->enemy_l != 1
+	r = data->map->map[data->map->enemy_y][data->map->enemy_x + 1];
+	if (r != '1' && r != 'E' && r != 'C' && data->enemy_l != 1
 		&& enemy_right(data))
 		return (0);
 	else
@@ -47,15 +48,16 @@ int	enemy_move(t_data *data)
 		data->enemy_l = 1;
 		data->enemy_r = 0;
 	}
-	c = data->map->map[data->map->enemy_y][data->map->enemy_x - 1];
-	if (c != '1' && c != 'E' && c != 'C' && data->enemy_r != 1
+	l = data->map->map[data->map->enemy_y][data->map->enemy_x - 1];
+	if (l != '1' && l != 'E' && l != 'C' && data->enemy_r != 1
 		&& enemy_left(data))
 		return (0);
 	else
 	{
+		if (r != '1' && r != 'E' && r != 'C')
+			enemy_right(data);
 		data->enemy_l = 0;
 		data->enemy_r = 1;
-		enemy_right(data);
 	}
 	return (0);
 }

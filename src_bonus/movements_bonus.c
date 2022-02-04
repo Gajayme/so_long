@@ -6,7 +6,7 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/30 17:26:32 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/02 17:53:30 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/02/04 12:13:45 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	movement_drawer(t_data *data)
 	x = 0;
 	mov_arr = ft_itoa(data->movement);
 	if (!mov_arr)
-		stop("itoa error", data);
+		stop_3("Itoa error", data);
 	while (mov_arr[++i])
 	{
 		num_draw(mov_arr[i], data, x);

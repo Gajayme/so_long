@@ -6,7 +6,7 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 22:41:02 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/02 20:18:47 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/02/04 12:12:51 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	red_cross(t_data *data)
 {
-	stop(NULL, data);
+	stop_4(NULL, data);
 	return (0);
 }
 
@@ -42,6 +42,6 @@ int	key_hook(int keycode, t_data *data)
 	if (keycode == 13)
 		pre_up(data);
 	if (keycode == 53)
-		stop(NULL, data);
+		stop_4(NULL, data);
 	return (0);
 }

@@ -6,42 +6,54 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:57:29 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/02 20:21:29 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/02/04 12:19:55 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int	wrapper(int func, char *err_txt, t_data *data)
+int	stop_1(char *err_msg)
 {
-	if (func == -1)
-		stop(err_txt, data);
-	return (func);
+	printf("Error\n%s\n", err_msg);
+	exit (1);
 }
 
-int	stop(char *err_msg, t_data *data)
+int	stop_2(char *err_msg, t_data *data)
+{
+	free(data->map);
+	printf("Error\n%s\n", err_msg);
+	exit (1);
+}
+
+int	stop_3(char *err_msg, t_data *data)
 {
 	int	i;
 
-	i = 0;
-	if (data->map)
+	i = -1;
+	while (data->map->map[++i])
+		free(data->map->map[i]);
+	free(data->map->map[i]);
+	free(data->map->map);
+	free(data->map);
+	printf("Error\n%s\n", err_msg);
+	exit (1);
+}
+
+int	stop_4(char *err_msg, t_data *data)
+{
+	int	i;
+
+	i = -1;
+	while (data->map->map[++i])
+		free(data->map->map[i]);
+	free(data->map->map[i]);
+	free(data->map->map);
+	free(data->map);
+	mlx_destroy_window(data->mlx, data->mlx_win);
+	if (err_msg)
 	{
-		if (data->map->map)
-		{
-			while (data->map->map[i])
-			{
-				free(data->map->map[i]);
-				i += 1;
-			}
-			free(data->map->map);
-		}
-		if (data->map->file)
-			free(data->map->file);
-		free(data->map);
-		if (data->mlx_win)
-			mlx_destroy_window(data->mlx, data->mlx_win);
-	}
-	if (err_msg && printf("Error\n%s\n", err_msg))
+		printf("Error\n%s\n", err_msg);
 		exit (1);
-	exit (0);
+	}
+	exit(0);
 }
