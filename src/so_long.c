@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gajayme <gajayme@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:57:07 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/04 11:47:18 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/02/04 21:23:15 by gajayme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	fname_val(char *filename)
 		return (1);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (0);
+		return (1);
 	close (fd);
 	return (0);
 }
