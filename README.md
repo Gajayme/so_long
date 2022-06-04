@@ -27,15 +27,15 @@ All of makefile rules:
 | ``make bonus`` | Generete game with enemies |
 | ``make clean`` | Deletes all object files |
 | ``make fclean`` | Deletes the object files and the _solong_ file |
-| ``make re`` | makes ``fclean`` and ``make`` again (vithout enemies) |
+| ``make re`` | makes ``fclean`` and ``make`` again (without enemies) |
 
 ``there could be warnings while creating _so_long_ file, but they are on the conscience of the developers :)``
 
 
 ### Game_rules
 ---
-The main idea of game is very simple: all you have to do is collect all "booze" bottles and escape reach 24-hours liquor store!
-You can't escape without collecting all of bottles. If you play ``bonus`` vesrion there are police patrol cars, you should avoid.
+The main idea of the game is very simple: all you have to do is collect all "booze" bottles and reach 24-hours liquor store!
+You can't escape without collecting all of the bottles. If you play ``bonus`` vesrion there are police patrols cars, you should avoid.
 
 ### Control
 ---
@@ -56,7 +56,7 @@ All my maps are stored in ``maps`` folder. All of them are playable, except ``ma
 | ``E`` | Finish |
 
 #### Creating your own map
-If you want, you could create your own map by changing one of my or creating new one.
+If you want, you can create your own map by changing one of my or creating new one.
 There are some rules you should ming, creating a map:
 
 1. **map must be surrounded bu _1_**
