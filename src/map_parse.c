@@ -6,7 +6,7 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 19:41:47 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/04 11:42:21 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/06/04 15:52:26 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,33 +68,28 @@ int	mdl(char *line, t_data *data, int h)
 	return (0);
 }
 
-int	line_counter(t_data *data)
+void	line_counter(t_data *data)
 {
-	int	i;
 	int	lines;
 
-	i = -1;
 	lines = 0;
-	while (data->map->file[++i])
-	{
-		if (data->map->file[i] == '\n')
-			lines += 1;
-	}
-	return (lines);
+	while (data->map->map[lines] && data->map->map[lines + 1])
+		lines ++;
+	if (lines < 2 || ft_strlen(data->map->map[lines]) < 3)
+		stop_3("Invalid map", data);
 }
 
 int	map_parse(t_data *data)
 {
 	int	h;
-	int	lines;
 
 	h = -1;
-	lines = line_counter(data);
 	data->map->map = ft_split(data->map->file, '\n');
 	free(data->map->file);
 	data->map->file = NULL;
 	if (!data->map->map)
 		stop_2("Splitting error", data);
+	line_counter(data);
 	while (data->map->map[++h])
 	{
 		if (h == 0)
@@ -105,9 +100,8 @@ int	map_parse(t_data *data)
 			mdl(data->map->map[h], data, h);
 	}
 	data->map->height = h;
-	if (h < 3 || data->map->width < 3 || data->map->start
-		!= 1 || data->map->collect == 0 || data->map->end == 0
-		|| lines != h)
+	if (data->map->start
+		!= 1 || data->map->collect == 0 || data->map->end == 0)
 		stop_3("Invalid map", data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 12:03:25 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/04 12:18:29 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/06/04 15:56:41 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int		file_read(char *filename, t_data *data);
 int		read_initer(char *file, t_data *data);
 
 //map parse
-int		line_counter(t_data *data);
+void		line_counter(t_data *data);
 int		mdl(char *line, t_data *data, int h);
 int		map_parse(t_data *data);
 int		fst_lst(char *line, t_data *data, char flag);

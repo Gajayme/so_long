@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enemy_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gajayme <gajayme@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:59:24 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/04 20:15:51 by gajayme          ###   ########.fr       */
+/*   Updated: 2022/06/04 16:23:23 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,27 +65,40 @@ int	enemy_move(t_data *data)
 int	enemy_spawn(t_data *data)
 {
 	int	amount;
-	int	i;
-	int	j;
+	//int	i;
+	int	r_w;
+	int r_h;
 
-	amount = 0;
-	i = data->map->height / 2;
-	while (data->map->map[i] && amount == 0)
+	amount = (data->map->width * data->map->height) / 20;
+	//i = data->map->height / 2;
+	//i = -1;
+	while (--amount >= 0)
 	{
-		j = 1;
-		while (data->map->map[i][j] && amount == 0)
-		{
-			if (data->map->map[i][j] == '0' && data->map->map[i][j + 1] != 'P'
-				&& data->map->map[i][j - 1] != 'P')
+		r_h = rand() % data->map->height;
+		r_w = rand() % data->map->width;
+		if (data->map->map[r_h][r_w] == '0' && data->map->map[r_h][r_w + 1] != 'P'
+				&& data->map->map[r_h][r_w - 1] != 'P')
 			{
-				data->map->map[i][j] = '!';
-				data->map->enemy_x = j;
-				data->map->enemy_y = i;
-				amount += 1;
+				data->map->map[r_h][r_w] = '!';
+				data->map->enemy_x = r_w;
+				data->map->enemy_y = r_h;
 			}
-			j += 1;
-		}
-		i += 1;
+	// while (data->map->map[i] && amount == 0)
+	// {
+	// 	j = 1;
+	// 	while (data->map->map[i][j] && amount == 0)
+	// 	{
+	// 		if (data->map->map[i][j] == '0' && data->map->map[i][j + 1] != 'P'
+	// 			&& data->map->map[i][j - 1] != 'P')
+	// 		{
+	// 			data->map->map[i][j] = '!';
+	// 			data->map->enemy_x = j;
+	// 			data->map->enemy_y = i;
+	// 			amount += 1;
+	// 		}
+	// 		j += 1;
+	// 	}
+	// 	i += 1;
 	}
 	return (0);
 }
