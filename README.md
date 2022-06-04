@@ -29,7 +29,7 @@ All of makefile rules:
 | ``make fclean`` | Deletes the object files and the _solong_ file |
 | ``make re`` | makes ``fclean`` and ``make`` again (vithout enemies) |
 
-``there could be warnings while creating _so_long_ file, but they are on the conscience of the developers :)
+``there could be warnings while creating _so_long_ file, but they are on the conscience of the developers :)``
 
 
 ### Game_rules
