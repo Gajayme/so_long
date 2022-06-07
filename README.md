@@ -5,7 +5,7 @@ Small 2D game made with the miniLibX (the graphic library of the 42 school).
 ### Index
 ---
 * [Game rules](#Game_rules)
-* [Execute the game](#Exetute_the_game)
+* [Execute the game](#Execute_the_game)
 * [Control](#Control)
 * [Maps](#Maps)
 * [Contacts](#Contacts)
