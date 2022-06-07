@@ -24,7 +24,7 @@ All of makefile rules:
 | - | - |
 | ``make`` | Generete game without enemies |
 | ``make all`` | Same as just make |
-| ``make bonus`` | Generete game with enemies |
+| ``make bonus`` | Generete game with enemies and some animation|
 | ``make clean`` | Deletes all object files |
 | ``make fclean`` | Deletes the object files and the _solong_ file |
 | ``make re`` | makes ``fclean`` and ``make`` again (without enemies) |
@@ -66,6 +66,7 @@ There are some rules you should ming, creating a map:
 5. **there mustn't be any other symbols**
 6. **all lines must be the same length**
 7. **of course map width and height couldn't be less then 3**
+8. **If you are playing _bonus_ ver. map should be big enough to spawn some enemies (8 * * or more)
 ---
 ### Contacts
 Feel free to clone this project, check the code or contact me if you have any question or suggestions:
