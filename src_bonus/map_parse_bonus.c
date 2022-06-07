@@ -6,7 +6,7 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 19:41:47 by lyubov            #+#    #+#             */
-/*   Updated: 2022/06/04 15:57:43 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/06/07 17:00:37 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ int	mdl(char *line, t_data *data, int h)
 			data->map->end += 1;
 		else if (line[i] == 'C')
 			data->map->collect += 1;
-		else if (line[i] == 'F')
-			data->map->enemy += 1;
 		else if (line[i] != '0' && line[i] != '1')
 			stop_3("Invalid map", data);
 	}

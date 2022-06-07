@@ -105,3 +105,6 @@ re:		fclean all
 
 #OTHER
 .PHONY: all clean fclean re
+
+#play_1:
+#	./so_long maps/map_big.ber

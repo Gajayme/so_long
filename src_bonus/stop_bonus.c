@@ -6,7 +6,7 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:57:29 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/04 12:26:13 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/06/07 17:09:51 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ int	stop_4(char *err_msg, t_data *data)
 	while (data->map->map[++i])
 		free(data->map->map[i]);
 	free(data->map->map[i]);
+	if (data->map->enemy_x)
+		free(data->map->enemy_x);
+	if (data->map->enemy_y)
+		free(data->map->enemy_y);
 	free(data->map->map);
 	free(data->map);
 	mlx_destroy_window(data->mlx, data->mlx_win);

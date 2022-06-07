@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gajayme <gajayme@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:57:07 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/04 21:23:07 by gajayme          ###   ########.fr       */
+/*   Updated: 2022/06/07 17:07:05 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc_bonus/so_long_bonus.h"
-
-//check leacks
 
 int	img_open(t_data *data)
 {
@@ -35,7 +33,6 @@ int	img_open(t_data *data)
 			"img/enemy_l.XPM", &data->img_w, &data->img_h);
 	data->enemy_r_img = mlx_xpm_file_to_image(data->mlx,
 			"img/enemy_r.XPM", &data->img_w, &data->img_h);
-	data->enemy_img = data->enemy_r_img;
 	return (0);
 }
 
@@ -54,8 +51,6 @@ int	game_initer(char *filename, t_data *data)
 {
 	data->movement = 0;
 	data->hero_step = 0;
-	data->enemy_r = 0;
-	data->enemy_l = 0;
 	read_initer(filename, data);
 	data->mlx = mlx_init();
 	img_open(data);

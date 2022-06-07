@@ -6,7 +6,7 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 13:10:19 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/04 12:26:47 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/06/07 17:17:49 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ int	read_initer(char *filename, t_data *data)
 	data->map->start = 0;
 	data->map->end = 0;
 	data->map->collect = 0;
+	data->map->enemy_amount = 0;
+	data->map->enemy_x = NULL;
+	data->map->enemy_y = NULL;
 	file_read(filename, data);
 	map_parse(data);
 	return (0);

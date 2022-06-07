@@ -6,7 +6,7 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 19:08:38 by lyubov            #+#    #+#             */
-/*   Updated: 2022/02/02 17:53:19 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/06/07 16:05:43 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,13 @@ int	img_drawer(char c, t_data *data, int i, int j)
 	else if (c == 'E')
 		mlx_put_image_to_window(data->mlx, data->mlx_win,
 			data->end_img, j * data->img_w, i * data->img_h);
-	else if (c == '!' && img_drawer('0', data, i, j))
+	else if (c == '>' && img_drawer('0', data, i, j))
 		mlx_put_image_to_window(data->mlx, data->mlx_win,
-			data->enemy_img, j * data->img_w, i * data->img_h);
+			data->enemy_r_img, j * data->img_w, i * data->img_h);
+	else if (c == '<' && img_drawer('0', data, i, j))
+		mlx_put_image_to_window(data->mlx, data->mlx_win,
+			data->enemy_l_img, j * data->img_w, i * data->img_h);
+
 	return (1);
 }
 

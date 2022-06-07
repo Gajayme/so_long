@@ -6,7 +6,7 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 12:03:25 by lyubov            #+#    #+#             */
-/*   Updated: 2022/06/04 15:56:41 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/06/07 17:00:46 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ typedef struct s_map
 	int		start;
 	int		end;
 	int		collect;
-	int		enemy;
 	int		hero_x;
 	int		hero_y;
-	int		enemy_x;
-	int		enemy_y;
+	int		enemy_amount;
+	int		*enemy_x;//now it is array
+	int		*enemy_y;//now it is array
 
 }				t_map;
 
@@ -63,7 +63,6 @@ typedef struct s_data {
 	void	*hero_st_img;
 	void	*hero_mv_1_img;
 	void	*hero_mv_2_img;
-	void	*enemy_img;
 	void	*enemy_r_img;
 	void	*enemy_l_img;
 	void	*end_img;
@@ -85,8 +84,6 @@ typedef struct s_data {
 	int		down_draw_start;
 	int		right_draw_start;
 
-	int		enemy_r;
-	int		enemy_l;
 	int		hero_step;
 	int		movement;
 	t_map	*map;
@@ -106,7 +103,7 @@ int		file_read(char *filename, t_data *data);
 int		read_initer(char *file, t_data *data);
 
 //map parse
-void		line_counter(t_data *data);
+void	line_counter(t_data *data);
 int		mdl(char *line, t_data *data, int h);
 int		map_parse(t_data *data);
 int		fst_lst(char *line, t_data *data, char flag);
@@ -136,7 +133,9 @@ int		move_left(t_data *data, char c);
 int		move_up(t_data *data, char c);
 int		move_down(t_data *data, char c);
 
-//enemyes
+//enemies
+int		enemy_right(t_data	*data, int i);
+int		enemy_left(t_data	*data, int i);
 int		enemy_spawn(t_data *data);
 int		enemy_move(t_data *data);
 

@@ -6,58 +6,57 @@
 /*   By: lyubov <lyubov@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 11:59:24 by lyubov            #+#    #+#             */
-/*   Updated: 2022/06/04 16:23:23 by lyubov           ###   ########.fr       */
+/*   Updated: 2022/06/07 17:17:30 by lyubov           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc_bonus/so_long_bonus.h"
 
-int	enemy_right(t_data	*data)
+int	enemy_right(t_data	*data, int i)
 {
-	data->enemy_img = data->enemy_r_img;
-	if (data->map->map[data->map->enemy_y][data->map->enemy_x + 1] == 'P')
+	if (data->map->map[data->map->enemy_y[i]][data->map->enemy_x[i] + 1] == 'P')
 		stop_4(NULL, data);
-	data->map->map[data->map->enemy_y][data->map->enemy_x] = '0';
-	data->map->enemy_x += 1;
-	data->map->map[data->map->enemy_y][data->map->enemy_x] = '!';
+	data->map->map[data->map->enemy_y[i]][data->map->enemy_x[i]] = '0';
+	data->map->enemy_x[i] += 1;
+	data->map->map[data->map->enemy_y[i]][data->map->enemy_x[i]] = '>';
 	return (1);
 }
 
-int	enemy_left(t_data	*data)
+int	enemy_left(t_data	*data, int i)
 {
-	data->enemy_img = data->enemy_l_img;
-	if (data->map->map[data->map->enemy_y][data->map->enemy_x - 1] == 'P')
+	if (data->map->map[data->map->enemy_y[i]][data->map->enemy_x[i] - 1] == 'P')
 		stop_4(NULL, data);
-	data->map->map[data->map->enemy_y][data->map->enemy_x] = '0';
-	data->map->enemy_x -= 1;
-	data->map->map[data->map->enemy_y][data->map->enemy_x] = '!';
+	data->map->map[data->map->enemy_y[i]][data->map->enemy_x[i]] = '0';
+	data->map->enemy_x[i] -= 1;
+	data->map->map[data->map->enemy_y[i]][data->map->enemy_x[i]] = '<';
 	return (1);
 }
 
 int	enemy_move(t_data *data)
 {
-	char	r;
-	char	l;
+	char	next;
+	char	cur;
+	int		i;
 
-	r = data->map->map[data->map->enemy_y][data->map->enemy_x + 1];
-	if (r != '1' && r != 'E' && r != 'C' && data->enemy_l != 1
-		&& enemy_right(data))
-		return (0);
-	else
+	i = -1;
+	while (++i != data->map->enemy_amount)
 	{
-		data->enemy_l = 1;
-		data->enemy_r = 0;
-	}
-	l = data->map->map[data->map->enemy_y][data->map->enemy_x - 1];
-	if (l != '1' && l != 'E' && l != 'C' && data->enemy_r != 1
-		&& enemy_left(data))
-		return (0);
-	else
-	{
-		if (r != '1' && r != 'E' && r != 'C')
-			enemy_right(data);
-		data->enemy_l = 0;
-		data->enemy_r = 1;
+		cur = data->map->map[data->map->enemy_y[i]][data->map->enemy_x[i]];
+		if (cur == '>')
+		{
+			next = data->map->map[data->map->enemy_y[i]][data->map->enemy_x[i] + 1];
+			if (next != '1' && next != 'E' && next != 'C' && enemy_right(data, i))
+				continue;
+			else
+				data->map->map[data->map->enemy_y[i]][data->map->enemy_x[i]] = '<';
+		}
+		else if (cur == '<'){
+			next = data->map->map[data->map->enemy_y[i]][data->map->enemy_x[i] - 1];
+			if (next != '1' && next != 'E' && next != 'C' && enemy_left(data, i))
+				continue;
+			else
+				data->map->map[data->map->enemy_y[i]][data->map->enemy_x[i]] = '>';
+		}
 	}
 	return (0);
 }
@@ -65,40 +64,37 @@ int	enemy_move(t_data *data)
 int	enemy_spawn(t_data *data)
 {
 	int	amount;
-	//int	i;
-	int	r_w;
+	int	i;
+	int	j;
 	int r_h;
 
-	amount = (data->map->width * data->map->height) / 20;
-	//i = data->map->height / 2;
-	//i = -1;
+	amount = data->map->height / 4;
+	if (!amount)
+		return 0;
+	data->map->enemy_x = (int *)malloc(sizeof(int) * data->map->enemy_amount);
+	if (!data->map->enemy_x)
+		stop_3("Malloc error\n", data);
+	data->map->enemy_y = (int *)malloc(sizeof(int) * data->map->enemy_amount);
+	if (!data->map->enemy_y ){
+		free(data->map->enemy_y);
+		stop_3("Malloc error\n", data);
+	}
+	j = -1;
 	while (--amount >= 0)
 	{
 		r_h = rand() % data->map->height;
-		r_w = rand() % data->map->width;
-		if (data->map->map[r_h][r_w] == '0' && data->map->map[r_h][r_w + 1] != 'P'
-				&& data->map->map[r_h][r_w - 1] != 'P')
-			{
-				data->map->map[r_h][r_w] = '!';
-				data->map->enemy_x = r_w;
-				data->map->enemy_y = r_h;
-			}
-	// while (data->map->map[i] && amount == 0)
-	// {
-	// 	j = 1;
-	// 	while (data->map->map[i][j] && amount == 0)
-	// 	{
-	// 		if (data->map->map[i][j] == '0' && data->map->map[i][j + 1] != 'P'
-	// 			&& data->map->map[i][j - 1] != 'P')
-	// 		{
-	// 			data->map->map[i][j] = '!';
-	// 			data->map->enemy_x = j;
-	// 			data->map->enemy_y = i;
-	// 			amount += 1;
-	// 		}
-	// 		j += 1;
-	// 	}
-	// 	i += 1;
+		i = -1;
+		while (++i < data->map->width)
+		{
+			if (data->map->map[r_h][i] == '0')
+				{
+					data->map->map[r_h][i] = '>';
+					data->map->enemy_x[++j] = i;
+					data->map->enemy_y[j] = r_h;
+					data->map->enemy_amount ++;
+					break;
+				}
+		}
 	}
 	return (0);
 }
