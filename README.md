@@ -6,7 +6,7 @@ Small 2D game made with the miniLibX (the graphic library of the 42 school).
 ### Index
 
 * [Game rules](#Game_rules)
-* [Execute the game](#Execute_the_game)
+* [Run the game](#Run_the_game)
 * [Control](#Control)
 * [Maps](#Maps)
 * [Contacts](#Contacts)
@@ -15,7 +15,7 @@ Small 2D game made with the miniLibX (the graphic library of the 42 school).
 ![ezgif com-crop](https://user-images.githubusercontent.com/90501558/173867719-af9413cc-7839-43f2-ad21-f9bb15d99a28.gif)
 
 ---
-### Execute_the_game
+### Run_the_game
 
 To play you can use ``make`` or ``make all`` to generate _so_long_ file, then you can execute it with one of map as a parametr:
 
