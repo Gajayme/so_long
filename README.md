@@ -1,4 +1,4 @@
-# so_long
+# so_long (school 21 project)
 
 Small 2D game made with the miniLibX (the graphic library of the 42 school).
 
