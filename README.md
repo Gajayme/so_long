@@ -10,6 +10,8 @@ Small 2D game made with the miniLibX (the graphic library of the 42 school).
 * [Control](#Control)
 * [Maps](#Maps)
 * [Contacts](#Contacts)
+* 
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/90501558/173867398-b511d7d0-8300-4a54-bee3-3285b4cdc269.gif)
 
 ![Снимок экрана 2022-06-04 в 13 14 44](https://user-images.githubusercontent.com/90501558/171995044-140ba8d0-08a6-4369-afe7-68aa8d92e4c3.png)
 
