@@ -38,7 +38,7 @@ All of makefile rules:
 ### Game_rules
 
 The main idea of the game is very simple: all you have to do is collect all "booze" bottles and reach 24-hours liquor store!
-You can't escape without collecting all of the bottles. If you play ``bonus`` vesrion there are police patrols cars, you should avoid.
+You can't escape without collecting all of the bottles. If you play ``bonus`` vesrion there are police patrol cars, you should avoid.
 
 ---
 ### Control
